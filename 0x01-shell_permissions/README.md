@@ -1,3 +1,3 @@
 # Introduction To Use of Shell Permissions
 
-## Scripts listed have their functions in their commit messages
+## Scripts listed have their functions described in their commit messages
