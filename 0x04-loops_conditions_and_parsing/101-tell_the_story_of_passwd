@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script displays the content of /etc/passwd file
+#+ formatted as a storytelling output
+#+ It implements the INTERNAL FIELD SEPARATOR.
+
+# f1...f7 represents the fields in each line of
+#+ /etc/passwd delimited by ":"
+while IFS=: read -r f1 f2 f3 f4 f5 f6 f7;
+do
+	story_line="The user $f1 is part of the $f4 gang, lives in $f6 and rides $f7. $f3's place is protected by the passcode $f2, more info about the user here: $f5"
+	printf "%s\n" "$story_line"
+done < /etc/passwd
