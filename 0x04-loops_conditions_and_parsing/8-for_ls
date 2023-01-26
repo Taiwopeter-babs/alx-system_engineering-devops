@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script displays the content of the current directory
+#+ in a list format, trimming the output to omit characters before
+#+ "-" in the name of the file
+
+LIST="$(ls)"
+
+for file in $LIST;
+do
+	val=$(echo "$file" | cut -d '-' -f 2)
+	printf "%s\n" "$val"
+done
