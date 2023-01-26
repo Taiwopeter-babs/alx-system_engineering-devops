@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# This script displays information about a file;
+#+ If the file exists or not;
+#+ If the file is empty, and if it is a regular file
+
+filename="./school"
+
+if [[ -e $filename ]]
+then
+	printf "school file exists\n"
+
+	if [[ -s $filename ]]
+	then
+		printf "school file is not empty\n"
+	else
+		printf "school file is empty\n"
+	fi
+
+	if [[ -f $filename ]]
+	then
+		printf "school is a regular file\n"
+	fi
+else
+	printf "school file does not exist\n"
+fi
