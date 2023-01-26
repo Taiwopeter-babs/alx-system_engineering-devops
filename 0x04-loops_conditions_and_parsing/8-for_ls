@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script displays the content of the current directory
-#+ in a list format, trimming the output to omit characters before
-#+ "-" in the name of the file
+#+ in a list format, trimming the output to omit '-' and
+#+ characters before "-" in the name of the file
 
 LIST="$(ls)"
 
