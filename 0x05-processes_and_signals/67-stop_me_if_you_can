@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Kills the process of 7-highlander script but it persists
+#+ due to trapped SIGTERM signal
+# shellcheck disable=SC2009
+
+id=$(ps -aux | grep -i '[7]-highlander' | tr -s ' ' | cut -d ' ' -f 2)
+kill -15 "$id"
