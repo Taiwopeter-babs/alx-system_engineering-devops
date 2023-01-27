@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script displays all running processes
+#+ in user-oriented format
+
+ps -aux
