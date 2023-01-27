@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Prints a string infintely and traps the SIGTERM signal,
+#+ printing a message if user tries to interrupt with CTRL + C
+
+trap "echo I am invincible!!!;" 15
+
+while true;
+do
+	printf "To infinity and beyond\n"
+	sleep 2
+done
