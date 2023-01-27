@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Prints a string infintely
+
+string="To infinity and beyond"
+
+while true;
+do
+	printf "%s\n" "$string"
+done
