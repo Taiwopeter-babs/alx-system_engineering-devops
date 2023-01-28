@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This scripts writes a string to a file indefinitely
+
+while true;
+do
+	echo I am alive >> /tmp/my_process 2> /dev/null
+	sleep 2
+done
