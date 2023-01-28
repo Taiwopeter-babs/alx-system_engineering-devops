@@ -3,6 +3,7 @@
 
 while true;
 do
+	# Error messages are not shown
 	echo I am alive >> /tmp/my_process 2> /dev/null
 	sleep 2
 done
