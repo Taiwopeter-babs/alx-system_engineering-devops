@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script parses downloaded Apache web server log files
+#+ and groups output by IP addresses and HTTP status codes
+
+cat < apache-access.log | awk '{print $1,$9}' 
