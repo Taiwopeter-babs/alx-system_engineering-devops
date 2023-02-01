@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This script uses the `ping` command to test the
+#+ latency between the computer and the IP address
+#+ passed as an argument
+
+arg="$1"
+
+if [[ $1 ]]
+then
+	ping -c 5 "$arg"
+else
+	printf "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}\n"
+fi
