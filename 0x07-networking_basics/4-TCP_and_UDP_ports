@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script shows only the listening ports,..., and PID
+#+ and name of the listeners process
+sudo netstat -tulnp
