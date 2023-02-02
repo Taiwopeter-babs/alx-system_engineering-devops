@@ -22,7 +22,6 @@ if [[ $res = 0 ]]
 then
 	# Resolve the new ip
 	sed -i "/$facebookhost/ s/.*/$facebookip\t$facebookhost/" ~/hosts.new
-	printf "host exists\n"
 else
 	# append host & ip address
 	echo "$FACEBOOKLINE" >> ~/hosts.new
