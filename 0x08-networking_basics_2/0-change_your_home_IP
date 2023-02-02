@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# This script changes the IP addresses of hostnames:
+#+ localhost & facebook.com
+
+newfacebookip="8.8.8.8"
+facebookhost="facebook.com"
+localhost="localhost"
+newlocalip="127.0.0.2"
+
+# Save original /etc/hosts file in case of error
+cp /etc/hosts /etc/hosts.new
+
+# Copy original /etc/hosts to file to modify on docker container
+#+ Docker overwrites /etc/hosts without regard for your modifications
+cp /etc/hosts ~/hosts.new
+
+# Get last line in file
+lastline=$(cat ~/hosts.new | tail -n 1)
+
+# Set facebook IP
+while read -r line;
+do
+	host=$(echo $line | tr -s ' '| cut -d ' ' -f 2)
+	
+	if [[ $host = $facebookhost ]]
+	then
+		sed -i "/$host/ s/.*/$newfacebookip\t$host/g" ~/hosts.new
+		break
+	elif [[ $line = $lastline ]]
+	then
+		sed -i -e '$ a 8.8.8.8\tfacebook.com' ~/hosts.new
+	fi
+done < ~/hosts.new
+
+# Set localhost IP
+while read -r line;
+do
+	host=$(echo $line | tr -s ' '| cut -d ' ' -f 2)
+
+	if [[ $host = $localhost ]]
+	then
+		sed -i "/$host$/ s/.*/$newlocalip\t$host/g" ~/hosts.new
+		break
+	fi
+done < ~/hosts.new
+
+# force copy to /etc/hosts
+cp -f ~/hosts.new /etc/hosts
