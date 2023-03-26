@@ -1,6 +1,6 @@
 # This manifest manages the ssh_config client
 include stdlib
-file_line { 'diasble password auth':
+file_line { 'disable password auth':
     ensure => 'present',
     path   => '/etc/ssh/ssh_config',
     match  => 'PasswordAuthentication',
