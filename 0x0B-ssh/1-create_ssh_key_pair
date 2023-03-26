@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script generates a ssh private-public key pair
+#+ with a passphrase (-N betty) and saves it to a file (-f filename) 
+
+ssh-keygen -t rsa -b 4096 -P "betty" -f "./school"
