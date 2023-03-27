@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script transfers a file from a local client to a remote server
+#+ The transfer is authenticated with the private key
+
+path_to_file="$1"
+IP="$2"
+remote_user="$3"
+path_to_key="$4"
+num_of_arg="$#"
+
+if [[ "$num_of_arg" -lt 3 ]]
+then
+	printf "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY\n"
+elif [[ "$num_of_arg" -eq 4 ]]
+then
+	scp -i "$path_to_key" -o StrictHostKeyChecking=no "$path_to_file" "$remote_user"@"$IP":~/
+elif [[ "$num_of_arg" -eq 3 ]]
+then
+	scp -o StrictHostKeyChecking=no "$path_to_file" "$remote_user"@"$IP":~/
+fi
