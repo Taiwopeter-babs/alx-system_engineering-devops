@@ -8,5 +8,5 @@ sudo apt-get -y install nginx
 echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 sed -i "47i rewrite $redir" /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
-sed -i "47i error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+sed -i "48i error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
 sudo service nginx restart
