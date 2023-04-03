@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# This script installs nginx on a linux ubuntu distro
+#+ and configures the server to have a HTTP header that specifies 
+#+ in the response header the current server serving
+
+# variables
+redir="^/redirect https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+host_name="\$hostname"
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+# configure the default page when server is started
+echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+
+# configure a redirect
+sed -i "47i rewrite $redir" /etc/nginx/sites-available/default
+
+# manage custom 404 page
+touch "/var/www/html/custom_404.html"
+echo "Ceci n'est pas une page" | sudo tee "/var/www/html/custom_404.html" > /dev/null
+sed -i "48i error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+
+# configure response header for current server
+sed -i "49i add_header X-Served-By $host_name;" /etc/nginx/sites-available/default
+
+# check if server is currently running
+sudo service nginx restart
