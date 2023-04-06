@@ -20,5 +20,3 @@ else
 	print_domain_record "web-01.$1" "web-01"
 	print_domain_record "web-02.$1" "web-02"
 fi
-echo " "
-dig "$1" | grep -A1 "ANSWER SECTION:" | tail -n 1 | sed -E "s/$1./$2/p"
