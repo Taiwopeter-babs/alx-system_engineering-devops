@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 # This script configures a nginx server to listen on port 80
-sudo sed -i "s/listen 8080 default_server;/listen 80 default_server;/g" /etc/nginx/sites-enabled/default
-sudo sed -i "s/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server ipv6only=on;/g" /etc/nginx/sites-enabled/default
+
+# Enter the sites-enabled directory or exit if it does not exist
+cd /etc/nginx/sites-enabled || exit;
+
+# Since the `default` file listens on port 8080, and it's a symlink
+#+ to /etc/nginx/sites-available/default, delete it
+sudo rm default || exit;
+
+# create a new link
+sudo ln -s /etc/nginx/sites-available/default default;
+
+# restart nginx
 sudo service nginx restart
