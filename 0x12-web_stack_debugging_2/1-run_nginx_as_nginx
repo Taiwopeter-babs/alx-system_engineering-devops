@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# configure nginx to run as user nginx and listen on port 8080
+
+# apache2 was listening on port 8080
+sudo pkill apache2
+
+# /etc/nginx/nginx.conf has no permissions
+sudo chmod 644 /etc/nginx/nginx.conf
+
+# change user
+sudo chown -R nginx /etc/nginx/nginx.conf
+
+# change the port nginx listens on
+su - nginx -c "sed -i 's/80/8080/g' /etc/nginx/sites-available/default"
+
+su - nginx -c "service nginx restart"
