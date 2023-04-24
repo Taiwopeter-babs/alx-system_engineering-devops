@@ -39,4 +39,4 @@ def export_data_csv(emp_id):
 
 
 if __name__ == "__main__":
-    export_data_csv(argv[1])
+    export_data_csv(int(argv[1]))
