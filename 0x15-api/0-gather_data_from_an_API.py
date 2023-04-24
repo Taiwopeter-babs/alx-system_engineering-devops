@@ -13,7 +13,6 @@ def gather_data(emp_id: int):
     url_users = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
 
     try:
-        completed = 0
         payload = {"userId": emp_id}
 
         # make requests via the APIs
@@ -24,14 +23,14 @@ def gather_data(emp_id: int):
         emp_name = resp_user.get("name")
 
         # get the completed tasks
-        completed = [task.get("title") for task in todo if task.get("completed")]
-        total = len(completed)
+        done = [task.get("title") for task in todo if task.get("completed")]
+        total = len(done)
         # output
         first_line = "Employee {} is done with tasks({}/{}):"
         print(first_line.format(emp_name, total, len(todo)))
 
         # print the title of the completed tasks
-        [print("\t {}".format(task)) for task in completed]
+        [print("\t {}".format(task)) for task in done]
 
     except requests.exceptions.RequestException:
         return
