@@ -36,8 +36,4 @@ def gather_data(emp_id):
 
 
 if __name__ == "__main__":
-    try:
-        emp_id = argv[1]
-        gather_data(emp_id)
-    except IndexError:
-        pass
+    gather_data(int(argv[1]))
