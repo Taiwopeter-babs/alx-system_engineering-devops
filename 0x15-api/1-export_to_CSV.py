@@ -12,30 +12,26 @@ def export_data_csv(emp_id: int):
     it to csv file
     """
 
-    url_todo = "https://jsonplaceholder.typicode.com/todos/"
-    url_users = "https://jsonplaceholder.typicode.com/users/"
+    url_todo = "https://jsonplaceholder.typicode.com/todos"
+    url_users = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
 
     try:
-        payload1 = {"userId": emp_id}
-        payload2 = {"id": emp_id}
-
+        payload = {"userId": emp_id}
+       
         # make requests via the APIs
-        resp_todo = requests.get(url_todo, params=payload1)
-        resp_user = requests.get(url_users, params=payload2)
+        todo = requests.get(url_todo, params=payload).json()
+        user = requests.get(url_users).json()
 
-        # deserialize the responses
-        emp_todo = resp_todo.json()
-        emp_info = resp_user.json()[0]
 
-        username = emp_info.get("username")
-        user_id = emp_info.get("id")
-        file_name = "{}.csv".format(emp_info.get("id"))
+        username = user.get("username")
+        user_id = user.get("id")
+        file_name = "{}.csv".format(user.get("id"))
 
         # exports data to csv file
         with open(file_name, mode="w") as csv_file:
             writer = csv.writer(csv_file, delimiter=",", quoting=csv.QUOTE_ALL)
 
-            for task in emp_todo:
+            for task in todo:
                 list_write = [
                     user_id,
                     username,

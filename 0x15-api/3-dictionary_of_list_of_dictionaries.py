@@ -11,23 +11,17 @@ def export_all_data_json():
     it to json file
     """
 
-    url_todo = "https://jsonplaceholder.typicode.com/todos/"
-    url_users = "https://jsonplaceholder.typicode.com/users/"
+    url_todo = "https://jsonplaceholder.typicode.com/todos"
+    url_users = "https://jsonplaceholder.typicode.com/users"
 
     try:
-        # payload1 = {"userId": emp_id}
-        # payload2 = {"id": emp_id}
 
         # make requests via the APIs
-        resp_todo = requests.get(url_todo)
-        resp_user = requests.get(url_users)
-
-        # deserialize the responses
-        emp_todo = resp_todo.json()
-        emp_info = resp_user.json()
+        todo = requests.get(url_todo).json()
+        users = requests.get(url_users).json()
 
         # list of employees
-        users = [user.get("username") for user in emp_info]
+        users = [user.get("username") for user in users]
 
         idx = curr_pos = 0
         user_id = 1
@@ -39,7 +33,7 @@ def export_all_data_json():
 
             pos = curr_pos
             count = 0
-            while pos < len(emp_todo):
+            while pos < len(todo):
 
                 """since the amount of tasks per employee is known,
                 a definite limit is used
@@ -47,8 +41,8 @@ def export_all_data_json():
                 if count < 20:
                     info_dict = {
                         "username": users[idx],
-                        "task": emp_todo[pos].get("title"),
-                        "completed": emp_todo[pos].get("completed"),
+                        "task": todo[pos].get("title"),
+                        "completed": todo[pos].get("completed"),
                     }
                     emp_tasks.append(info_dict)
                 else:

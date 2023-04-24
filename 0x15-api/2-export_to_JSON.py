@@ -12,29 +12,24 @@ def export_data_json(emp_id: int):
     it to json file
     """
 
-    url_todo = "https://jsonplaceholder.typicode.com/todos/"
-    url_users = "https://jsonplaceholder.typicode.com/users/"
+    url_todo = "https://jsonplaceholder.typicode.com/todos"
+    url_users = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
 
     try:
-        payload1 = {"userId": emp_id}
-        payload2 = {"id": emp_id}
+        payload = {"userId": emp_id}
 
         # make requests via the APIs
-        resp_todo = requests.get(url_todo, params=payload1)
-        resp_user = requests.get(url_users, params=payload2)
+        todo = requests.get(url_todo, params=payload).json()
+        user = requests.get(url_users).json()
 
-        # deserialize the responses
-        emp_todo = resp_todo.json()
-        emp_info = resp_user.json()[0]
-
-        username = emp_info.get("username")
-        user_id = emp_info.get("id")
-        file_name = "{}.json".format(emp_info.get("id"))
+        username = user.get("username")
+        user_id = user.get("id")
+        file_name = "{}.json".format(user.get("id"))
 
         # create a of tasks dictionary
         # print(emp_todo)
         tasks_list = []
-        for task in emp_todo:
+        for task in todo:
             kwargs = {
                 "task": task.get("title"),
                 "completed": task.get("completed"),
