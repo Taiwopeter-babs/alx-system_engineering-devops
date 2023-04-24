@@ -24,10 +24,9 @@ def gather_data(emp_id):
 
         # get the completed tasks
         done = [task.get("title") for task in todo if task.get("completed")]
-        total = len(done)
         # output
         first_line = "Employee {} is done with tasks({}/{}):"
-        print(first_line.format(emp_name, total, len(todo)))
+        print(first_line.format(emp_name, len(done), len(todo)))
 
         # print the title of the completed tasks
         [print("\t {}".format(task)) for task in done]
