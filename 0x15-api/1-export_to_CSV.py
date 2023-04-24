@@ -15,31 +15,27 @@ def export_data_csv(emp_id: int):
     url_todo = "https://jsonplaceholder.typicode.com/todos"
     url_users = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
 
-    try:
-        payload = {"userId": emp_id}
-        # make requests via the APIs
-        todo = requests.get(url_todo, params=payload).json()
-        user = requests.get(url_users).json()
+    payload = {"userId": emp_id}
+    # make requests via the APIs
+    todo = requests.get(url_todo, params=payload).json()
+    user = requests.get(url_users).json()
 
-        username = user.get("username")
-        user_id = user.get("id")
-        file_name = "{}.csv".format(user.get("id"))
+    username = user.get("username")
+    user_id = user.get("id")
+    file_name = "{}.csv".format(user.get("id"))
 
-        # exports data to csv file
-        with open(file_name, mode="w") as csv_file:
-            writer = csv.writer(csv_file, delimiter=",", quoting=csv.QUOTE_ALL)
+    # exports data to csv file
+    with open(file_name, mode="w") as csv_file:
+        writer = csv.writer(csv_file, delimiter=",", quoting=csv.QUOTE_ALL)
 
-            for task in todo:
-                list_write = [
-                    user_id,
-                    username,
-                    task.get("completed"),
-                    task.get("title"),
-                ]
-                writer.writerow(list_write)
-
-    except requests.exceptions.RequestException:
-        return
+        for task in todo:
+            list_write = [
+                user_id,
+                username,
+                task.get("completed"),
+                task.get("title"),
+            ]
+            writer.writerow(list_write)
 
 
 if __name__ == "__main__":
