@@ -9,7 +9,7 @@ from sys import argv
 def gather_data(emp_id):
     """returns data about and employee from an api"""
 
-    url_todo = "https://jsonplaceholder.typicode.com/todos/"
+    url_todo = "https://jsonplaceholder.typicode.com/todos"
     url_users = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
 
     try:
