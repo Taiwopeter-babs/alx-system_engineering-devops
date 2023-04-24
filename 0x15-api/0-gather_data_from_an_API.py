@@ -10,13 +10,13 @@ def gather_data(emp_id):
     """returns data about and employee from an api"""
 
     url_todo = "https://jsonplaceholder.typicode.com/todos"
-    url_users = "https://jsonplaceholder.typicode.com/users?id={}"
+    url_users = "https://jsonplaceholder.typicode.com/users/{}"
 
     payload = {"userId": emp_id}
 
     # make requests via the APIs
     todo = requests.get(url_todo, params=payload).json()
-    resp_user = requests.get(url_users.format(emp_id)).json()[0]
+    resp_user = requests.get(url_users.format(emp_id)).json()
 
     # get the total number of tasks for employee and the employee's name
     emp_name = resp_user.get("name")
