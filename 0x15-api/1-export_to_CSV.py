@@ -7,7 +7,7 @@ import requests
 from sys import argv
 
 
-def export_data_csv(emp_id: int):
+def export_data_csv(emp_id):
     """returns data about and employee from an api and exports
     it to csv file
     """
@@ -22,7 +22,7 @@ def export_data_csv(emp_id: int):
 
     username = user.get("username")
     user_id = user.get("id")
-    file_name = "{}.csv".format(user.get("id"))
+    file_name = "{}.csv".format(emp_id)
 
     # exports data to csv file
     with open(file_name, mode="w") as csv_file:

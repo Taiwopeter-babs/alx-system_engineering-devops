@@ -24,7 +24,7 @@ def export_data_json(emp_id: int):
 
         username = user.get("username")
         user_id = user.get("id")
-        file_name = "{}.json".format(user.get("id"))
+        file_name = "{}.json".format(emp_id)
 
         # create a of tasks dictionary
         # print(emp_todo)
