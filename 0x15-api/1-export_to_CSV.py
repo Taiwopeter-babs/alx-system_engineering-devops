@@ -39,11 +39,4 @@ def export_data_csv(emp_id: int):
 
 
 if __name__ == "__main__":
-    try:
-        emp_id = argv[1]
-
-        if emp_id.isdigit():
-            emp_id = int(emp_id)
-            export_data_csv(emp_id)
-    except IndexError:
-        pass
+    export_data_csv(argv[1])
