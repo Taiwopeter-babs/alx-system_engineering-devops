@@ -2,14 +2,14 @@
 """This script sends a request to an api and exports the
 response
 """
-import csv
+import json
 import requests
 from sys import argv
 
 
-def export_data_csv(emp_id: int):
+def export_data_json(emp_id: int):
     """returns data about and employee from an api and exports
-    it to csv file
+    it to json file
     """
 
     url_todo = "https://jsonplaceholder.typicode.com/todos/"
@@ -29,20 +29,24 @@ def export_data_csv(emp_id: int):
 
         username = emp_info.get("username")
         user_id = emp_info.get("id")
-        file_name = "{}.csv".format(emp_info.get("id"))
+        file_name = "{}.json".format(emp_info.get("id"))
 
-        # exports data to csv file
-        with open(file_name, mode="w") as csv_file:
-            writer = csv.writer(csv_file, delimiter=",", quoting=csv.QUOTE_ALL)
+        # create a of tasks dictionary
+        # print(emp_todo)
+        tasks_list = []
+        for task in emp_todo:
+            kwargs = {
+                "task": task.get("title"),
+                "completed": task.get("completed"),
+                "username": username,
+            }
+            new_dict = dict(**kwargs)
+            tasks_list.append(new_dict)
+        task_dict = {str(user_id): tasks_list}
 
-            for task in emp_todo:
-                list_write = [
-                    user_id,
-                    username,
-                    task.get("completed"),
-                    task.get("title"),
-                ]
-                writer.writerow(list_write)
+        # export data to json file
+        with open(file_name, mode="w", encoding="utf-8") as json_file:
+            json.dump(task_dict, json_file)
 
     except requests.exceptions.RequestException:
         return
@@ -54,6 +58,6 @@ if __name__ == "__main__":
 
         if emp_id.isdigit():
             emp_id = int(emp_id)
-            export_data_csv(emp_id)
+            export_data_json(emp_id)
     except IndexError:
         pass

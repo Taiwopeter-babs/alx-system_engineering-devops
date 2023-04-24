@@ -42,7 +42,7 @@ def gather_data(emp_id: int):
             if task.get("completed"):
                 print("\t {}".format(task.get("title")))
     except requests.exceptions.RequestException:
-        print(resp_todo.status_code)
+        return
 
 
 if __name__ == "__main__":
