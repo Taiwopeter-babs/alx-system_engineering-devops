@@ -6,7 +6,7 @@ import requests
 from sys import argv
 
 
-def gather_data(emp_id: int):
+def gather_data(emp_id):
     """returns data about and employee from an api"""
 
     url_todo = "https://jsonplaceholder.typicode.com/todos/"
@@ -39,9 +39,6 @@ def gather_data(emp_id: int):
 if __name__ == "__main__":
     try:
         emp_id = argv[1]
-
-        if emp_id.isdigit():
-            emp_id = int(emp_id)
-            gather_data(emp_id)
+        gather_data(emp_id)
     except IndexError:
         pass
