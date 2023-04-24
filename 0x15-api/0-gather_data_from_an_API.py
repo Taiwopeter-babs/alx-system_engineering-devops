@@ -10,37 +10,29 @@ def gather_data(emp_id: int):
     """returns data about and employee from an api"""
 
     url_todo = "https://jsonplaceholder.typicode.com/todos/"
-    url_users = "https://jsonplaceholder.typicode.com/users/"
+    url_users = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
 
     try:
         completed = 0
-        payload1 = {"userId": emp_id}
-        payload2 = {"id": emp_id}
+        payload = {"userId": emp_id}
 
         # make requests via the APIs
-        resp_todo = requests.get(url_todo, params=payload1)
-        resp_user = requests.get(url_users, params=payload2)
-
-        # deserialize the responses
-        emp_todo = resp_todo.json()
-        emp_info = resp_user.json()[0]
+        todo = requests.get(url_todo, params=payload).json()
+        resp_user = requests.get(url_users).json()
 
         # get the total number of tasks for employee and the employee's name
-        total_todo = len(emp_todo)
-        emp_name = emp_info.get("name")
+        emp_name = resp_user.get("name")
 
-        # get the number of completed tasks
-        for task in emp_todo:
-            if task.get("completed"):
-                completed += 1
+        # get the completed tasks
+        completed = [task.get("title") for task in todo if task.get("completed")]
+        total = len(completed)
         # output
         first_line = "Employee {} is done with tasks({}/{}):"
-        print(first_line.format(emp_name, completed, total_todo))
+        print(first_line.format(emp_name, total, len(todo)))
 
         # print the title of the completed tasks
-        for task in emp_todo:
-            if task.get("completed"):
-                print("\t {}".format(task.get("title")))
+        [print("\t {}".format(task)) for task in completed]
+
     except requests.exceptions.RequestException:
         return
 
