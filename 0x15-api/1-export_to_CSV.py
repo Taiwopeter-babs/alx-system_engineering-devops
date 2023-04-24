@@ -17,11 +17,9 @@ def export_data_csv(emp_id: int):
 
     try:
         payload = {"userId": emp_id}
-       
         # make requests via the APIs
         todo = requests.get(url_todo, params=payload).json()
         user = requests.get(url_users).json()
-
 
         username = user.get("username")
         user_id = user.get("id")
