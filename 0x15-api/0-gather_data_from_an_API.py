@@ -9,13 +9,13 @@ from sys import argv
 def gather_data(emp_id):
     """returns data about and employee from an api"""
 
-    url_todo = "https://jsonplaceholder.typicode.com/todos"
+    url_todo = "https://jsonplaceholder.typicode.com/todos?userId={}"
     url_users = "https://jsonplaceholder.typicode.com/users/{}"
 
     payload = {"userId": emp_id}
 
     # make requests via the APIs
-    todo = requests.get(url_todo, params=payload).json()
+    todo = requests.get(url_todo.format(emp_id)).json()
     resp_user = requests.get(url_users.format(emp_id)).json()
 
     # get the total number of tasks for employee and the employee's name
