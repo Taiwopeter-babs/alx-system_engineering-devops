@@ -43,16 +43,16 @@ def count_words(subreddit, word_list):
         for word in word_list:
             count = 0
             for title in all_titles:
-                
+
                 # convert words to lowercase for comparison
                 title = [w.lower() for w in title.split()]
-                
+
                 # Only count for present words in response
                 if word in title:
                     for w in title:
                         if word == w:
                             count += 1
-            # Only add words that are present to dictionary                
+            # Only add words that are present to dictionary
             if count:
 
                 """If a word is duplicated in the function parameter
