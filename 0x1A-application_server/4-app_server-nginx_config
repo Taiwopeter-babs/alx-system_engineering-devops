@@ -1,0 +1,27 @@
+# This script configures the Nginx server to serve a page
+# from a route /airbnb-onepage/ in Airbnb_clone_v2
+server {
+	# listen on port 80
+	listen 80;
+	listen [::]:80;
+	
+	# define the server name
+	server_name 18.235.234.96;
+
+	add_header X-Served-By 136616-web-01;
+
+	location /airbnb-onepage/ {
+		proxy_pass http://localhost:5000/airbnb-onepage/;
+		include proxy_params;
+	}
+	
+	# serve /number_odd_or_even/ route
+	location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+		proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+	}
+	
+	# serve the /api/ route from AirBNB version 3
+	location /api {
+		proxy_pass http://127.0.0.1:5002/api;
+	}
+}
