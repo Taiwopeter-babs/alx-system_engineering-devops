@@ -8,5 +8,5 @@ exec {'nginx-server-fix':
 
 exec {'restart nginx':
   command => 'sudo service nginx restart',
-  path    => '/bin/',
+  path    => '/usr/bin/',
 }
