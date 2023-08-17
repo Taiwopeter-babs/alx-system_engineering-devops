@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script configures a nginx server to listen on port 80
+sed -i "s/listen 8080 default_server;/listen 80 default_server;/" config.txt
+sed -i "s/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server ipv6only=on;/" config.txt

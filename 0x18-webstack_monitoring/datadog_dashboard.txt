@@ -1,0 +1,10 @@
+{'dashboards': [{'author_handle': 'babalolataiwop@gmail.com',
+                 'created_at': datetime.datetime(2023, 5, 10, 11, 5, 32, 65463, tzinfo=tzutc()),
+                 'deleted_at': None,
+                 'description': None,
+                 'id': 'pr7-sii-ix2',
+                 'is_read_only': False,
+                 'layout_type': 'ordered',
+                 'modified_at': datetime.datetime(2023, 5, 10, 11, 8, 35, 539225, tzinfo=tzutc()),
+                 'title': "Taiwo's Dashboard",
+                 'url': '/dashboard/pr7-sii-ix2/taiwos-dashboard'}]}

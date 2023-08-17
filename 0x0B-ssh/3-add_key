@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script adds a public key to the server specified
+ssh-copy-id -f -i ~/.ssh/id_alx_rsa.pub ubuntu@18.235.234.96

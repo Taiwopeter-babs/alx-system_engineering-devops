@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # This script installs nginx on a linux ubuntu distro
 #+ and returns hello world when the web server is queried
+#+ 'tee' reads from stdin and writes to stdout and file at the same time
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
-echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 sudo service nginx start
